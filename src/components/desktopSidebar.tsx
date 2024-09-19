@@ -16,36 +16,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { CircleUser, Home, Menu, Package, Search, Users } from "lucide-react";
+import { CircleUser, Menu, Search } from "lucide-react";
 import ClientSelectRoute from "./clientSelectRoute";
-import { MobileIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
-const routes = [
-  {
-    name: "Home",
-    href: "/",
-    icon: Home,
-  },
-  {
-    name: "About",
-    href: "/about",
-    icon: Users,
-  },
-  {
-    name: "Projects",
-    href: "/projects",
-    icon: Package,
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-    icon: MobileIcon,
-  },
-];
+import { routes } from "./globalData";
+import { ModeToggle } from "./toggleTheme";
 
 const DesktopSidebar = () => {
   return (
-    <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+    <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6">
       <Sheet>
         <div className="hidden">
           <SheetTitle></SheetTitle>
@@ -99,6 +78,7 @@ const DesktopSidebar = () => {
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ModeToggle />
     </header>
   );
 };

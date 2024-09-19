@@ -1,35 +1,14 @@
 "use client";
-import { Bell, Home, Package, Package2, Users } from "lucide-react";
+import { Bell, Package2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import ClientSelectRoute from "./clientSelectRoute";
-import { MobileIcon } from "@radix-ui/react-icons";
-const routes = [
-  {
-    name: "Home",
-    href: "/",
-    icon: Home,
-  },
-  {
-    name: "About",
-    href: "/about",
-    icon: Users,
-  },
-  {
-    name: "Projects",
-    href: "/projects",
-    icon: Package,
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-    icon: MobileIcon,
-  },
-];
+import { routes } from "./globalData";
+
 const MobileSheet = () => {
   return (
-    <div className="hidden border-r bg-muted/40 md:block">
+    <div className="hidden border-r md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
