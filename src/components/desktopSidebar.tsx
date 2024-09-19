@@ -62,6 +62,7 @@ const DesktopSidebar = () => {
           </div>
         </form>
       </div>
+      <ModeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
@@ -78,7 +79,6 @@ const DesktopSidebar = () => {
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <ModeToggle />
     </header>
   );
 };
