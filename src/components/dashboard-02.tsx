@@ -3,7 +3,7 @@ import DesktopSidebar from "./desktopSidebar";
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+    <div className="grid min-h-screen dark:bg-black/95 dark:text-white w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <MobileSheet />
       <div className="flex flex-col">
         <DesktopSidebar />
