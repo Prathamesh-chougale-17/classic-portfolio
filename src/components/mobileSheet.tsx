@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -8,13 +8,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import ClientSelectRoute from "./clientSelectRoute";
 import { Button } from "./ui/button";
 import { routes } from "./globalData";
 import { ModeToggle } from "./toggleTheme";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { ProjectsCombobox } from "./advance-component/search/test-project-combobox";
 
 const DesktopSidebar = () => {
   const pathname = usePathname();
@@ -46,18 +47,7 @@ const DesktopSidebar = () => {
         </SheetContent>
       </Sheet>
       <div className="w-full flex-1">
-        {pathname === "/projects" && (
-          <form>
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-              />
-            </div>
-          </form>
-        )}
+        {pathname === "/projects" && <ProjectsCombobox />}
       </div>
       <ModeToggle />
       <SignedOut>
