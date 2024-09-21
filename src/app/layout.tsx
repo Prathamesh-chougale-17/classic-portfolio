@@ -4,7 +4,6 @@ import "./globals.css";
 import Dashboard from "@/components/dashboard-02";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,7 +39,6 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Dashboard>{children}</Dashboard>
-            <Toaster />
           </ThemeProvider>
         </ClerkProvider>
       </body>

@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/tooltip";
 import AnimatedContactIcon from "./ContactAnimation";
 import { socialLinks } from "@/components/globalData";
-import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
@@ -58,19 +57,11 @@ const ContactPage = () => {
         body: JSON.stringify(data),
       });
       setIsSubmitted("success");
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you soon.",
-      });
+
       reset();
     } catch (error) {
       console.error(error);
       setIsSubmitted("error");
-      toast({
-        variant: "destructive",
-        title: "Failed to send message",
-        description: "Please try again later.",
-      });
     }
   };
 
