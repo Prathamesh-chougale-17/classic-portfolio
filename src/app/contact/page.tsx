@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -13,8 +16,15 @@ import {
   Linkedin,
   Twitter,
   Instagram,
+  Loader2,
 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import AnimatedContactIcon from "./ContactAnimation";
 
 const socialLinks = [
@@ -24,28 +34,47 @@ const socialLinks = [
   { name: "Instagram", icon: Instagram, url: "https://instagram.com/johndoe" },
 ];
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(50),
+  subject: z.string().min(2, "Subject must be at least 2 characters").max(50),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters")
+    .max(500),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 const ContactPage = () => {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      subject: "",
+      message: "",
+    },
   });
-  type SubmitStatus = "loading" | "success" | "error" | null;
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormState({ ...formState, [e.target.id]: e.target.value });
-  };
+  const [submitStatus, setSubmitStatus] = React.useState<
+    "success" | "error" | null
+  >(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitStatus("loading");
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitStatus(Math.random() > 0.5 ? "success" : "error");
-    }, 1500);
+  const onSubmit = async (data: FormData) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log(data);
+      setSubmitStatus("success");
+      reset();
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error(error);
+    }
   };
 
   return (
@@ -56,41 +85,45 @@ const ContactPage = () => {
       className="mx-auto w-full"
     >
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Connect With Me
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Let&#39;s Connect!
         </h2>
-        <p className="mb-6">
-          Feel free to reach out through the form or connect with me on social
-          media. I&#39;m always excited to discuss new projects, ideas, or
-          opportunities!
+        <p className="text-center text-lg mb-6">
+          I&#39;m always excited to discuss new projects, ideas, or
+          opportunities. Drop me a message or connect through social media!
         </p>
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="flex justify-center space-x-4 mb-8">
           {socialLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-black dark:bg-white p-3 bg-opacity-20 dark:bg-opacity-20 rounded-lg hover:transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 + index * 0.1 }}
-            >
-              <link.icon className="mr-2 h-5 w-5" />
-              {link.name}
-            </motion.a>
+            <TooltipProvider key={index}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <motion.a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-600 p-3 rounded-full hover:bg-gray-300 dark:hover:bg-purple-100 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <link.icon className="h-6 w-6" />
+                  </motion.a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{link.name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ))}
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 rounded-b-lg shadow-lg">
         <div className="h-full w-full flex justify-center items-center">
           <AnimatedContactIcon />
         </div>
@@ -98,71 +131,84 @@ const ContactPage = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-6"
+          className="space-y-6"
         >
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block mb-2">
+              <label htmlFor="name" className="block mb-2 font-medium">
                 Name
               </label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Your Name"
-                required
-                value={formState.name}
-                onChange={handleChange}
-                className="placeholder-gray-300"
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="Your Name"
+                    className="w-full p-2 border rounded-md"
+                  />
+                )}
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
             <div>
-              <label htmlFor="email" className="block mb-2">
-                Email
+              <label htmlFor="subject" className="block mb-2 font-medium">
+                Subject
               </label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                required
-                value={formState.email}
-                onChange={handleChange}
-                className="placeholder-gray-300"
+              <Controller
+                name="subject"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    type="subject"
+                    placeholder="Your Subject"
+                    className="w-full p-2 border rounded-md"
+                  />
+                )}
               />
+              {errors.subject && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.subject.message}
+                </p>
+              )}
             </div>
             <div>
-              <label htmlFor="message" className="block mb-2">
+              <label htmlFor="message" className="block mb-2 font-medium">
                 Message
               </label>
-              <Textarea
-                id="message"
-                placeholder="Your message here..."
-                required
-                value={formState.message}
-                onChange={handleChange}
-                className="placeholder-gray-300 h-8"
+              <Controller
+                name="message"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    {...field}
+                    placeholder="Your message here..."
+                    className="w-full p-2 border rounded-md h-32"
+                  />
+                )}
               />
+              {errors.message && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.message.message}
+                </p>
+              )}
             </div>
             <Button
               type="submit"
-              className="w-full text-blue-600 hover:bg-opacity-90 transition-colors"
-              disabled={submitStatus === "loading"}
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-md hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
+              disabled={isSubmitting}
             >
-              {submitStatus === "loading" ? (
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  <Send className="mr-2 h-4 w-4" />
-                </motion.div>
+              {isSubmitting ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                <>
-                  <Send className="mr-2 h-4 w-4" /> Send Message
-                </>
+                <Send className="mr-2 h-4 w-4" />
               )}
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>
           <AnimatePresence>
@@ -172,13 +218,16 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5 }}
-                className="mt-4"
               >
-                <Alert variant="default" className="bg-green-500">
-                  <CheckCircle2 className="h-4 w-4" />
-                  <AlertTitle>Success!</AlertTitle>
+                <Alert
+                  variant="default"
+                  className="bg-green-100 border-green-500 text-green-700"
+                >
+                  <CheckCircle2 className="h-4 w-4 text-green-500" />
+                  <AlertTitle className="font-semibold">Success!</AlertTitle>
                   <AlertDescription>
-                    Your message has been sent successfully.
+                    Your message has been sent successfully. I&#39;ll get back
+                    to you soon!
                   </AlertDescription>
                 </Alert>
               </motion.div>
@@ -189,13 +238,13 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5 }}
-                className="mt-4"
               >
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertTitle>Error</AlertTitle>
                   <AlertDescription>
-                    There was a problem sending your message. Please try again.
+                    There was a problem sending your message. Please try again
+                    later.
                   </AlertDescription>
                 </Alert>
               </motion.div>
