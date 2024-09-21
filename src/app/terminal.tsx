@@ -8,7 +8,7 @@ export function Terminal() {
   const [copied, setCopied] = useState(false);
   const terminalSteps = [
     "git init",
-    "coding life",
+    "git branch -M life",
     "git add .",
     "git commit -m 'All the things'",
     "git remote add intern @<company name>",
