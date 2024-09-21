@@ -20,6 +20,7 @@ const projects = [
       "A full-stack e-commerce solution with advanced features like real-time inventory management and AI-powered product recommendations.",
     technologies: ["Next.js", "Node.js", "MongoDB", "Stripe", "TensorFlow"],
     link: "https://example-ecommerce.com",
+    github: "",
     icon: Briefcase,
   },
   {
@@ -152,7 +153,22 @@ const ProjectCard = ({
                     rel="noopener noreferrer"
                     className="flex items-center"
                   >
-                    View Project <ExternalLink className="ml-2" size={16} />
+                    Github Link <ExternalLink className="ml-2" size={16} />
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="bg-orange-500 text-white hover:bg-orange-600"
+                >
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    Live Link <ExternalLink className="ml-2" size={16} />
                   </a>
                 </Button>
               </motion.div>

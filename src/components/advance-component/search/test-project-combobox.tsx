@@ -18,68 +18,69 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Icons } from "./icons";
 import { Kbd } from "./kbd";
+import { projects } from "@/components/globalData";
 
 interface Project {
   id: string;
-  name: string;
+  title: string;
   categories: string[];
 }
 
-const sampleProjects: Project[] = [
-  {
-    id: "1",
-    name: "E-commerce Platform",
-    categories: ["Web Development", "React"],
-  },
-  {
-    id: "2",
-    name: "Mobile Banking App",
-    categories: ["Mobile Development", "Flutter"],
-  },
-  {
-    id: "3",
-    name: "AI Chatbot",
-    categories: ["Artificial Intelligence", "Python"],
-  },
-  {
-    id: "4",
-    name: "Inventory Management System",
-    categories: ["Web Development", "Node.js"],
-  },
-  {
-    id: "5",
-    name: "Fitness Tracking App",
-    categories: ["Mobile Development", "React Native"],
-  },
-  {
-    id: "6",
-    name: "Data Visualization Dashboard",
-    categories: ["Web Development", "D3.js"],
-  },
-  {
-    id: "7",
-    name: "Social Media Analytics Tool",
-    categories: ["Data Analysis", "Python"],
-  },
-  {
-    id: "8",
-    name: "Virtual Reality Game",
-    categories: ["Game Development", "Unity"],
-  },
-  {
-    id: "9",
-    name: "Smart Home IoT System",
-    categories: ["Internet of Things", "Embedded Systems"],
-  },
-  {
-    id: "10",
-    name: "Online Learning Platform",
-    categories: ["Web Development", "React", "Node.js"],
-  },
-];
+// const projects: Project[] = [
+//   {
+//     id: "1",
+//     title: "E-commerce Platform",
+//     categories: ["Web Development", "React"],
+//   },
+//   {
+//     id: "2",
+//     title: "Mobile Banking App",
+//     categories: ["Mobile Development", "Flutter"],
+//   },
+//   {
+//     id: "3",
+//     title: "AI Chatbot",
+//     categories: ["Artificial Intelligence", "Python"],
+//   },
+//   {
+//     id: "4",
+//     title: "Inventory Management System",
+//     categories: ["Web Development", "Node.js"],
+//   },
+//   {
+//     id: "5",
+//     title: "Fitness Tracking App",
+//     categories: ["Mobile Development", "React Native"],
+//   },
+//   {
+//     id: "6",
+//     title: "Data Visualization Dashboard",
+//     categories: ["Web Development", "D3.js"],
+//   },
+//   {
+//     id: "7",
+//     title: "Social Media Analytics Tool",
+//     categories: ["Data Analysis", "Python"],
+//   },
+//   {
+//     id: "8",
+//     title: "Virtual Reality Game",
+//     categories: ["Game Development", "Unity"],
+//   },
+//   {
+//     id: "9",
+//     title: "Smart Home IoT System",
+//     categories: ["Internet of Things", "Embedded Systems"],
+//   },
+//   {
+//     id: "10",
+//     title: "Online Learning Platform",
+//     categories: ["Web Development", "React", "Node.js"],
+//   },
+// ];
 
 interface ProjectGroup {
-  name: string;
+  title: string;
   projects: Project[];
 }
 
@@ -100,17 +101,17 @@ export function ProjectsCombobox() {
     setLoading(true);
     // Simulate API call delay
     setTimeout(() => {
-      const filteredProjects = sampleProjects.filter((project) =>
-        project.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+      const filteredProjects = projects.filter((project) =>
+        project.title.toLowerCase().includes(debouncedQuery.toLowerCase())
       );
 
       const groupedProjects = filteredProjects.reduce((acc, project) => {
         project.categories.forEach((category) => {
-          const existingGroup = acc.find((group) => group.name === category);
+          const existingGroup = acc.find((group) => group.title === category);
           if (existingGroup) {
             existingGroup.projects.push(project);
           } else {
-            acc.push({ name: category, projects: [project] });
+            acc.push({ title: category, projects: [project] });
           }
         });
         return acc;
@@ -183,15 +184,15 @@ export function ProjectsCombobox() {
           ) : (
             data?.map((group) => (
               <CommandGroup
-                key={group.name}
+                key={group.title}
                 className="capitalize"
-                heading={group.name}
+                heading={group.title}
               >
                 {group.projects.map((item) => (
                   <CommandItem
                     key={item.id}
                     className="h-9"
-                    value={item.name}
+                    value={item.title}
                     onSelect={() =>
                       onSelect(() => router.push(`/project/${item.id}`))
                     }
@@ -200,7 +201,7 @@ export function ProjectsCombobox() {
                       className="mr-2.5 size-3 text-muted-foreground"
                       aria-hidden="true"
                     />
-                    <span className="truncate">{item.name}</span>
+                    <span className="truncate">{item.title}</span>
                   </CommandItem>
                 ))}
               </CommandGroup>

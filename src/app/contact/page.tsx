@@ -89,10 +89,10 @@ const ContactPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h2 className="text-3xl font-bold mb-4 text-center">
+        <h2 className="text-3xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
           Let&#39;s Connect!
         </h2>
-        <p className="text-center text-lg mb-6">
+        <p className="text-center text-lg mb-6 opacity-40">
           I&#39;m always excited to discuss new projects, ideas, or
           opportunities. Drop me a message or connect through social media!
         </p>
@@ -105,7 +105,7 @@ const ContactPage = () => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-600 p-3 rounded-full hover:bg-gray-300 dark:hover:bg-purple-100 transition-colors"
+                    className="text-orange-600 p-3 rounded-full hover:bg-gray-300 dark:hover:bg-purple-100 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -200,7 +200,7 @@ const ContactPage = () => {
             </div>
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-md hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
+              className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 px-4 rounded-md hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
