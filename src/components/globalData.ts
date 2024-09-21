@@ -53,7 +53,7 @@ export const projects = [
       "A full-stack e-commerce solution with advanced features like real-time inventory management and AI-powered product recommendations.",
     technologies: ["Next.js", "Node.js", "MongoDB", "Stripe", "TensorFlow"],
     link: "https://example-ecommerce.com",
-    github: "",
+    github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Web Development", "React"],
   },
@@ -70,7 +70,7 @@ export const projects = [
       "Slack API",
     ],
     link: "https://example-taskmanager.com",
-    github: "",
+    github: "https://github.com/Prathamesh-chougale-17",
     icon: Code,
     categories: ["Mobile Development", "Flutter"],
   },
@@ -81,7 +81,7 @@ export const projects = [
     "An interactive weather app using React and external APIs for real-time data, featuring location-based forecasts and severe weather alerts.",
     technologies: ["React", "D3.js", "OpenWeatherMap API", "Geolocation API"],
     link: "https://example-weatherapp.com",
-    github: "",
+    github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Artificial Intelligence", "Python"],
   },
@@ -92,7 +92,7 @@ export const projects = [
       "A personal portfolio site built with Next.js and Tailwind CSS, showcasing my projects, skills, and contact information.",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
     link: "https://example-portfolio.com",
-    github: "",
+    github: "https://github.com/Prathamesh-chougale-17",
     icon: Code,
     categories: ["Web Development", "Node.js"],
   },
@@ -103,7 +103,7 @@ export const projects = [
       "A real-time chat app with end-to-end encryption, user authentication, and message history persistence using WebSockets and MongoDB.",
     technologies: ["React", "Node.js", "Socket.io", "MongoDB", "JWT"],
     link: "https://example-chatapp.com",
-    github: "",
+    github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Mobile Development", "React Native"],
   },
@@ -167,7 +167,7 @@ export const education = [
 ];
 
 export const socialLinks = [
-  { name: "GitHub", icon: Github, url: "https://github.com/johndoe" },
+  { name: "GitHub", icon: Github, url: "https://github.com/Prathamesh-chougale-17" },
   { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/johndoe" },
   { name: "Twitter", icon: Twitter, url: "https://twitter.com/johndoe" },
 ];

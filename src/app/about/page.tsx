@@ -87,14 +87,14 @@ const AboutPage = () => {
             >
               <Image
                 src={hero}
-                alt="John Doe"
+                alt="Prathamesh Chougale"
                 width={192}
                 height={192}
                 className="object-cover"
               />
             </motion.div>
             <h2 className="text-3xl font-bold text-center mb-2 text-orange-600 dark:text-orange-400">
-              John Doe
+              Prathamesh Chougale
             </h2>
             <p className="text-xl text-center text-orange-500 dark:text-orange-300 mb-4">
               Full Stack Developer

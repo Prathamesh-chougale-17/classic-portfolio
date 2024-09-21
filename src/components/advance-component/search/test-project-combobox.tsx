@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 import { cn, isMacOs } from "@/lib/utils";
@@ -24,60 +24,8 @@ interface Project {
   id: string;
   title: string;
   categories: string[];
+  github: string;
 }
-
-// const projects: Project[] = [
-//   {
-//     id: "1",
-//     title: "E-commerce Platform",
-//     categories: ["Web Development", "React"],
-//   },
-//   {
-//     id: "2",
-//     title: "Mobile Banking App",
-//     categories: ["Mobile Development", "Flutter"],
-//   },
-//   {
-//     id: "3",
-//     title: "AI Chatbot",
-//     categories: ["Artificial Intelligence", "Python"],
-//   },
-//   {
-//     id: "4",
-//     title: "Inventory Management System",
-//     categories: ["Web Development", "Node.js"],
-//   },
-//   {
-//     id: "5",
-//     title: "Fitness Tracking App",
-//     categories: ["Mobile Development", "React Native"],
-//   },
-//   {
-//     id: "6",
-//     title: "Data Visualization Dashboard",
-//     categories: ["Web Development", "D3.js"],
-//   },
-//   {
-//     id: "7",
-//     title: "Social Media Analytics Tool",
-//     categories: ["Data Analysis", "Python"],
-//   },
-//   {
-//     id: "8",
-//     title: "Virtual Reality Game",
-//     categories: ["Game Development", "Unity"],
-//   },
-//   {
-//     id: "9",
-//     title: "Smart Home IoT System",
-//     categories: ["Internet of Things", "Embedded Systems"],
-//   },
-//   {
-//     id: "10",
-//     title: "Online Learning Platform",
-//     categories: ["Web Development", "React", "Node.js"],
-//   },
-// ];
 
 interface ProjectGroup {
   title: string;
@@ -85,7 +33,7 @@ interface ProjectGroup {
 }
 
 export function ProjectsCombobox() {
-  const router = useRouter();
+  // const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const debouncedQuery = useDebounce(query, 300);
@@ -99,7 +47,7 @@ export function ProjectsCombobox() {
     }
 
     setLoading(true);
-    // Simulate API call delay
+    // Simulate API call delay if you have a real API
     setTimeout(() => {
       const filteredProjects = projects.filter((project) =>
         project.title.toLowerCase().includes(debouncedQuery.toLowerCase())
@@ -133,10 +81,10 @@ export function ProjectsCombobox() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const onSelect = React.useCallback((callback: () => unknown) => {
-    setOpen(false);
-    callback();
-  }, []);
+  // const onSelect = React.useCallback((callback: () => unknown) => {
+  //   setOpen(false);
+  //   callback();
+  // }, []);
 
   return (
     <>
@@ -191,11 +139,13 @@ export function ProjectsCombobox() {
                 {group.projects.map((item) => (
                   <CommandItem
                     key={item.id}
-                    className="h-9"
+                    className="h-9 cursor-pointer"
                     value={item.title}
-                    onSelect={() =>
-                      onSelect(() => router.push(`/project/${item.id}`))
-                    }
+                    // onSelect={() =>
+                    //   onSelect(() => router.push(`/project/${item.id}`))
+                    // }
+                    // open in new tab
+                    onSelect={() => window.open(item.github, "_blank")}
                   >
                     <Icons.product
                       className="mr-2.5 size-3 text-muted-foreground"
