@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
@@ -8,16 +7,7 @@ import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Send,
-  Github,
-  Linkedin,
-  Twitter,
-  Instagram,
-  Loader2,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2, Send, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Tooltip,
@@ -26,13 +16,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import AnimatedContactIcon from "./ContactAnimation";
-
-const socialLinks = [
-  { name: "GitHub", icon: Github, url: "https://github.com/johndoe" },
-  { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/johndoe" },
-  { name: "Twitter", icon: Twitter, url: "https://twitter.com/johndoe" },
-  { name: "Instagram", icon: Instagram, url: "https://instagram.com/johndoe" },
-];
+import { socialLinks } from "@/components/globalData";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
@@ -59,21 +44,33 @@ const ContactPage = () => {
       message: "",
     },
   });
-
-  const [submitStatus, setSubmitStatus] = React.useState<
+  const [isSubmitted, setIsSubmitted] = React.useState<
     "success" | "error" | null
   >(null);
 
   const onSubmit = async (data: FormData) => {
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log(data);
-      setSubmitStatus("success");
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      setIsSubmitted("success");
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you soon.",
+      });
       reset();
     } catch (error) {
-      setSubmitStatus("error");
       console.error(error);
+      setIsSubmitted("error");
+      toast({
+        variant: "destructive",
+        title: "Failed to send message",
+        description: "Please try again later.",
+      });
     }
   };
 
@@ -212,7 +209,7 @@ const ContactPage = () => {
             </Button>
           </form>
           <AnimatePresence>
-            {submitStatus === "success" && (
+            {isSubmitted === "success" && (
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -232,7 +229,7 @@ const ContactPage = () => {
                 </Alert>
               </motion.div>
             )}
-            {submitStatus === "error" && (
+            {isSubmitted === "error" && (
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
