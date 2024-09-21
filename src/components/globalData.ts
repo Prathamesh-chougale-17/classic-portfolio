@@ -1,7 +1,7 @@
 import { MobileIcon } from "@radix-ui/react-icons";
-import { Briefcase, Code, Github, Home, Linkedin, LucideProps, Package, Twitter, Users } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { Briefcase, Code, Github, Home, Linkedin, Package, Twitter, Users } from "lucide-react";
 
+// Sidebar Data
 export const routes = [
     {
       name: "Home",
@@ -26,7 +26,6 @@ export const routes = [
 ];
 
 // Home Data
-
 export const achievements = [
   {
     title: "Smart India Hackathon Winner",
@@ -46,17 +45,7 @@ export const achievements = [
 ];
 
 // Projects Data
-interface ProjectsProps{
-    id: string;
-    title: string;
-    description: string;
-    technologies: string[];
-    link: string;
-    github: string;
-    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
-    categories: string[];
-}
-export const projects:ProjectsProps[] = [
+export const projects = [
   {
     id: "1",
     title: "E-commerce Platform",
