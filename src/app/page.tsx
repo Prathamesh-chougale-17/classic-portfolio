@@ -1,75 +1,78 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, CreditCard } from "lucide-react";
+import { Terminal } from "./terminal";
 import Link from "next/link";
-import { ArrowRight, Code, Briefcase, Mail, LucideProps } from "lucide-react";
 
-const MenuItem = ({
-  text,
-  href,
-  icon: Icon,
-}: {
-  text: string;
-  href: string;
-  icon: React.ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
-  >;
-}) => (
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Button
-      asChild
-      variant="ghost"
-      className="w-full justify-start text-lg mb-2"
-    >
-      <Link href={href} className="flex items-center">
-        <Icon className="mr-2" />
-        {text}
-        <ArrowRight className="ml-auto" size={18} />
-      </Link>
-    </Button>
-  </motion.div>
-);
+const achievements = [
+  {
+    title: "Smart India Hackathon Winner",
+    description:
+      "Awarded for developing a real-time traffic management system using IoT and machine learning technologies.",
+  },
+  {
+    title: "Google Summer of Code Mentor",
+    description:
+      "Mentored students from around the world in open-source projects and helped them gain practical experience.",
+  },
+  {
+    title: "Hacktoberfest Contributor",
+    description:
+      "Contributed to various open-source projects during Hacktoberfest and received a special edition T-shirt.",
+  },
+];
 
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <div className="h-full flex flex-col justify-center items-center p-8">
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, type: "spring" }}
-        className="text-center mb-12"
-      >
-        <motion.h1
-          className="text-6xl font-bold mb-4"
-          initial={{ scale: 0.5 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-        >
-          Welcome to My Portfolio
-        </motion.h1>
-        <motion.p
-          className="text-2xl mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          Crafting digital experiences with passion and precision
-        </motion.p>
-      </motion.div>
-      <motion.div
-        className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-lg p-6 w-full max-w-md"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
-      >
-        <MenuItem text="About Me" href="/about" icon={Code} />
-        <MenuItem text="My Projects" href="/projects" icon={Briefcase} />
-        <MenuItem text="Get in Touch" href="/contact" icon={Mail} />
-      </motion.div>
-    </div>
-  );
-};
+    <main>
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+            <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+              <h1 className="text-4xl font-bold text-gray-900 tracking-tight sm:text-5xl">
+                <span className="block text-orange-500">Hello Everyone</span>
+              </h1>
+              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                I&#39;m Prathamesh Chougale a full-stack developer with a
+                passion for building high-quality software. I specialize in
+                building web applications with modern technologies like Next.js,
+                Tailwind CSS, and Prisma.
+              </p>
+              <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                <Link href={"/contact"}>
+                  <Button className="bg-white dark:bg-black/90 dark:text-white text-black dark:hover:bg-gray-600 hover:bg-gray-100 border border-gray-200 rounded-full text-lg px-8 py-4 inline-flex items-center justify-center">
+                    Contact Me
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+              <Terminal />
+            </div>
+          </div>
+        </div>
+      </section>
 
-export default HomePage;
+      <section className="pt-16 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-8">Achievements</h2>
+          <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+            {achievements.map((achievement) => (
+              <div key={achievement.title} className="mt-10 lg:mt-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
+                  <CreditCard className="h-6 w-6" />
+                </div>
+                <div className="mt-5">
+                  <h2 className="text-lg font-medium">{achievement.title}</h2>
+                  <p className="mt-2 text-base opacity-70">
+                    {achievement.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
