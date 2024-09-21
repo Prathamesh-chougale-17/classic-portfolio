@@ -2,24 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CreditCard } from "lucide-react";
 import { Terminal } from "./terminal";
 import Link from "next/link";
-
-const achievements = [
-  {
-    title: "Smart India Hackathon Winner",
-    description:
-      "Awarded for developing a real-time traffic management system using IoT and machine learning technologies.",
-  },
-  {
-    title: "Google Summer of Code Mentor",
-    description:
-      "Mentored students from around the world in open-source projects and helped them gain practical experience.",
-  },
-  {
-    title: "Hacktoberfest Contributor",
-    description:
-      "Contributed to various open-source projects during Hacktoberfest and received a special edition T-shirt.",
-  },
-];
+import { achievements } from "@/components/globalData";
 
 export default function HomePage() {
   return (

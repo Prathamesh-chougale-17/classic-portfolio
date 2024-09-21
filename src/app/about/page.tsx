@@ -4,76 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { Briefcase, GraduationCap } from "lucide-react";
+
+import hero from "@/public/hero.jpg";
 import {
-  Github,
-  Linkedin,
-  Twitter,
-  Briefcase,
-  GraduationCap,
-} from "lucide-react";
-
-const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "GraphQL",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Git",
-  "AWS",
-  "Docker",
-  "Python",
-  "MongoDB",
-];
-
-const experiences = [
-  {
-    company: "Tech Innovators",
-    role: "Senior Full Stack Developer",
-    period: "2020 - Present",
-    description:
-      "Leading development of scalable web applications using cutting-edge technologies.",
-  },
-  {
-    company: "WebCraft Solutions",
-    role: "Frontend Developer",
-    period: "2018 - 2020",
-    description:
-      "Developed responsive and interactive user interfaces for various client projects.",
-  },
-  {
-    company: "Digital Dynamics",
-    role: "Junior Developer",
-    period: "2016 - 2018",
-    description:
-      "Assisted in the development of web applications and gained expertise in frontend technologies.",
-  },
-];
-
-const education = [
-  {
-    degree: "BSc in Computer Science",
-    school: "Tech University",
-    period: "2012 - 2016",
-    description:
-      "Focused on software engineering, algorithms, and data structures.",
-  },
-  {
-    degree: "Full Stack Web Development Bootcamp",
-    school: "CodeCamp Academy",
-    period: "2016",
-    description:
-      "Intensive 12-week program covering modern web technologies and best practices.",
-  },
-];
-
-const socialLinks = [
-  { name: "GitHub", icon: Github, url: "https://github.com/johndoe" },
-  { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/johndoe" },
-  { name: "Twitter", icon: Twitter, url: "https://twitter.com/johndoe" },
-];
-
+  education,
+  experiences,
+  skills,
+  socialLinks,
+} from "@/components/globalData";
 const TimelineItem = ({
   item,
   icon: Icon,
@@ -147,7 +86,7 @@ const AboutPage = () => {
               className="w-48 h-48 rounded-full overflow-hidden mx-auto mb-6 border-4 border-orange-400"
             >
               <Image
-                src="/api/placeholder/400/320"
+                src={hero}
                 alt="John Doe"
                 width={192}
                 height={192}

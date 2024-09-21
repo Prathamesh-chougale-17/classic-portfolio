@@ -1,5 +1,5 @@
 import { MobileIcon } from "@radix-ui/react-icons";
-import { Briefcase, Code, Home, LucideProps, Package, Users } from "lucide-react";
+import { Briefcase, Code, Github, Home, Linkedin, LucideProps, Package, Twitter, Users } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export const routes = [
@@ -25,6 +25,27 @@ export const routes = [
     },
 ];
 
+// Home Data
+
+export const achievements = [
+  {
+    title: "Smart India Hackathon Winner",
+    description:
+      "Awarded for developing a real-time traffic management system using IoT and machine learning technologies.",
+  },
+  {
+    title: "Google Summer of Code Mentor",
+    description:
+      "Mentored students from around the world in open-source projects and helped them gain practical experience.",
+  },
+  {
+    title: "Hacktoberfest Contributor",
+    description:
+      "Contributed to various open-source projects during Hacktoberfest and received a special edition T-shirt.",
+  },
+];
+
+// Projects Data
 interface ProjectsProps{
     id: string;
     title: string;
@@ -35,7 +56,6 @@ interface ProjectsProps{
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
     categories: string[];
 }
-
 export const projects:ProjectsProps[] = [
   {
     id: "1",
@@ -98,4 +118,77 @@ export const projects:ProjectsProps[] = [
     icon: Briefcase,
     categories: ["Mobile Development", "React Native"],
   },
+];
+
+// About Data
+export const skills = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "GraphQL",
+  "Tailwind CSS",
+  "Framer Motion",
+  "Git",
+  "AWS",
+  "Docker",
+  "Python",
+  "MongoDB",
+];
+
+export const experiences = [
+  {
+    company: "Tech Innovators",
+    role: "Senior Full Stack Developer",
+    period: "2020 - Present",
+    description:
+      "Leading development of scalable web applications using cutting-edge technologies.",
+  },
+  {
+    company: "WebCraft Solutions",
+    role: "Frontend Developer",
+    period: "2018 - 2020",
+    description:
+      "Developed responsive and interactive user interfaces for various client projects.",
+  },
+  {
+    company: "Digital Dynamics",
+    role: "Junior Developer",
+    period: "2016 - 2018",
+    description:
+      "Assisted in the development of web applications and gained expertise in frontend technologies.",
+  },
+];
+
+export const education = [
+  {
+    degree: "BSc in Computer Science",
+    school: "Tech University",
+    period: "2012 - 2016",
+    description:
+      "Focused on software engineering, algorithms, and data structures.",
+  },
+  {
+    degree: "Full Stack Web Development Bootcamp",
+    school: "CodeCamp Academy",
+    period: "2016",
+    description:
+      "Intensive 12-week program covering modern web technologies and best practices.",
+  },
+];
+
+export const socialLinks = [
+  { name: "GitHub", icon: Github, url: "https://github.com/johndoe" },
+  { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/johndoe" },
+  { name: "Twitter", icon: Twitter, url: "https://twitter.com/johndoe" },
+];
+
+// Terminal Data
+export const terminalSteps = [
+  "git init",
+  "git branch -M life",
+  "git add .",
+  "git commit -m 'All the things'",
+  "git remote add intern @<company name>",
+  "git push -u intern life",
 ];

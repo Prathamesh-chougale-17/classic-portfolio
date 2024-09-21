@@ -2,18 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
+import { terminalSteps } from "@/components/globalData";
 
 export function Terminal() {
   const [terminalStep, setTerminalStep] = useState(0);
   const [copied, setCopied] = useState(false);
-  const terminalSteps = [
-    "git init",
-    "git branch -M life",
-    "git add .",
-    "git commit -m 'All the things'",
-    "git remote add intern @<company name>",
-    "git push -u intern life",
-  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,7 +16,7 @@ export function Terminal() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [terminalStep, terminalSteps.length]);
+  }, [terminalStep]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(terminalSteps.join("\n"));
