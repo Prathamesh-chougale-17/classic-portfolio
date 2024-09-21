@@ -8,76 +8,25 @@ import {
   ChevronDown,
   ChevronUp,
   ExternalLink,
-  Code,
-  Briefcase,
+  LucideProps,
 } from "lucide-react";
-
-const projects = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description:
-      "A full-stack e-commerce solution with advanced features like real-time inventory management and AI-powered product recommendations.",
-    technologies: ["Next.js", "Node.js", "MongoDB", "Stripe", "TensorFlow"],
-    link: "https://example-ecommerce.com",
-    github: "",
-    icon: Briefcase,
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description:
-      "A React-based task manager with drag-and-drop functionality, team collaboration features, and integration with popular productivity tools.",
-    technologies: [
-      "React",
-      "Redux",
-      "Firebase",
-      "Drag-n-Drop API",
-      "Slack API",
-    ],
-    link: "https://example-taskmanager.com",
-    icon: Code,
-  },
-  {
-    id: 3,
-    title: "Weather Dashboard",
-    description:
-      "An interactive weather app using React and external APIs for real-time data, featuring location-based forecasts and severe weather alerts.",
-    technologies: ["React", "D3.js", "OpenWeatherMap API", "Geolocation API"],
-    link: "https://example-weatherapp.com",
-    icon: Briefcase,
-  },
-  {
-    id: 4,
-    title: "Portfolio Website",
-    description:
-      "A personal portfolio site built with Next.js and Tailwind CSS, showcasing my projects, skills, and contact information.",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-    link: "https://example-portfolio.com",
-    icon: Code,
-  },
-  {
-    id: 5,
-    title: "Chat Application",
-    description:
-      "A real-time chat app with end-to-end encryption, user authentication, and message history persistence using WebSockets and MongoDB.",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "JWT"],
-    link: "https://example-chatapp.com",
-    icon: Briefcase,
-  },
-];
+import { projects } from "@/components/globalData";
 
 const ProjectCard = ({
   project,
   index,
 }: {
   project: {
-    id: number;
+    id: string;
     title: string;
     description: string;
     technologies: string[];
     link: string;
-    icon: React.ElementType;
+    icon: React.ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+    >;
+    categories: string[];
+    github: string;
   };
   index: number;
 }) => {
@@ -148,7 +97,7 @@ const ProjectCard = ({
                   className="bg-orange-500 text-white hover:bg-orange-600"
                 >
                   <a
-                    href={project.link}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"

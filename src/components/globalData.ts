@@ -52,7 +52,7 @@ export const projects = [
     description:
       "A full-stack e-commerce solution with advanced features like real-time inventory management and AI-powered product recommendations.",
     technologies: ["Next.js", "Node.js", "MongoDB", "Stripe", "TensorFlow"],
-    link: "https://example-ecommerce.com",
+    link: "https://prathameshchougale.me",
     github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Web Development", "React"],
@@ -69,7 +69,7 @@ export const projects = [
       "Drag-n-Drop API",
       "Slack API",
     ],
-    link: "https://example-taskmanager.com",
+    link: "https://prathameshchougale.me",
     github: "https://github.com/Prathamesh-chougale-17",
     icon: Code,
     categories: ["Mobile Development", "Flutter"],
@@ -80,7 +80,7 @@ export const projects = [
     description:
     "An interactive weather app using React and external APIs for real-time data, featuring location-based forecasts and severe weather alerts.",
     technologies: ["React", "D3.js", "OpenWeatherMap API", "Geolocation API"],
-    link: "https://example-weatherapp.com",
+    link: "https://prathameshchougale.me",
     github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Artificial Intelligence", "Python"],
@@ -91,7 +91,7 @@ export const projects = [
     description:
       "A personal portfolio site built with Next.js and Tailwind CSS, showcasing my projects, skills, and contact information.",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-    link: "https://example-portfolio.com",
+    link: "https://prathameshchougale.me",
     github: "https://github.com/Prathamesh-chougale-17",
     icon: Code,
     categories: ["Web Development", "Node.js"],
@@ -102,7 +102,7 @@ export const projects = [
     description:
       "A real-time chat app with end-to-end encryption, user authentication, and message history persistence using WebSockets and MongoDB.",
     technologies: ["React", "Node.js", "Socket.io", "MongoDB", "JWT"],
-    link: "https://example-chatapp.com",
+    link: "https://prathameshchougale.me",
     github: "https://github.com/Prathamesh-chougale-17",
     icon: Briefcase,
     categories: ["Mobile Development", "React Native"],
