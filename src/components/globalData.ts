@@ -168,8 +168,8 @@ export const education = [
 
 export const socialLinks = [
   { name: "GitHub", icon: Github, url: "https://github.com/Prathamesh-chougale-17" },
-  { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/johndoe" },
-  { name: "Twitter", icon: Twitter, url: "https://twitter.com/johndoe" },
+  { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/prathamesh-chougale/" },
+  { name: "Twitter", icon: Twitter, url: "https://x.com/Prathamesh_7717" },
 ];
 
 // Terminal Data
